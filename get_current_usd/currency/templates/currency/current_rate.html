@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exchange Rate</title>
+</head>
+<body>
+    <h1>Current Exchange Rate:</h1>
+    <p>Current rate: 1$ == {{ data.current_rate }} rub.</p>
+    <p>Current time: {{ data.current_time }}</p>
+
+    <h2>Last 10 Requests:</h2>
+    <ul>
+        {% for request in data.last_requests %}
+            <li>{{ request }}</li>
+        {% endfor %}
+    </ul>
+<form method="post" action="{% url 'get_current_usd' %}">
+    {% csrf_token %}
+    <button type="submit">Обновление значения</button>
+</form>
+</body>
+</html>
